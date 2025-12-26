@@ -1,0 +1,7 @@
+computer: pias_demo
+label: quad_demo
+description: quad eq
+filepath_executable: /share/data/hungdt/aiida/quad/quad
+default_calc_job_plugin: quad
+use_double_quotes: no
+with_mpi: yes

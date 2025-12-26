@@ -1,0 +1,13 @@
+---
+label: "pias_demo"
+hostname: "210.245.13.188"
+description: "PIAS Cluster"
+transport: "core.ssh"
+scheduler: "core.sge"
+work_dir: "/home/{username}/.aiida_run"
+mpiprocs_per_machine: 24
+user: kieuthanhtung0502@gmail.com
+username: 22010214
+key_filename: /home/jovyan/.ssh/id_rsa
+safe_interval: 5
+use_login_shell: "no"
