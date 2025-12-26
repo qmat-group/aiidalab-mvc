@@ -58,7 +58,7 @@ for config_file in "${FILES_TO_PROCESS[@]}"; do
     echo "Processing $config_file..."
     
     # Setup the code using verdi
-    verdi code setup --config "$config_file" --non-interactive
+    verdi code create core.code.installed --config "$config_file" --non-interactive
     
     if [ $? -eq 0 ]; then
         echo "Successfully setup code from $config_file"
