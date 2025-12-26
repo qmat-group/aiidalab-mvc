@@ -1,0 +1,50 @@
+layout: VBox
+children:
+  - type: HTML
+    value: "<h2>Quadratic Equation Solver</h2>"
+    
+  - type: VBox
+    children:
+      - type: HTML
+        value: "<h3>Parameters</h3>"
+      - type: FloatText
+        description: "a:"
+        key: a
+        style: 
+            description_width: initial
+      - type: FloatText
+        description: "b:"
+        key: b
+        style: 
+            description_width: initial
+      - type: FloatText
+        description: "c:"
+        key: c
+        style: 
+            description_width: initial
+            
+  - type: HBox
+    children:
+      - type: Button
+        description: "Calculate"
+        button_style: "success"
+        icon: "play"
+        key: calculate_btn
+        event: calculate
+      - type: Button
+        description: "Reset"
+        button_style: "warning"
+        icon: "refresh"
+        key: reset_btn
+        event: reset
+        
+  - type: VBox
+    children:
+      - type: HTML
+        value: "<h3>Results</h3>"
+      - type: HTML
+        key: status_output
+        value: "<b>Status:</b> Ready"
+      - type: HTML
+        key: result_output
+        value: "<b>Result:</b> No calculation performed yet"
