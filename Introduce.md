@@ -2,6 +2,12 @@
 
 Tài liệu này hướng dẫn cách cấu hình, cài đặt và phát triển giao diện cho hệ thống tính toán sử dụng framework AiiDA.
 
+- Đầu tiên hãy clone 2 repo sau 
+  - Aiida quad(Plugin): https://github.com/qmat-group/aiida-quad.git
+  - Aiida MVC: https://github.com/qmat-group/aiidalab-mvc.git
+ 
+Sử dụng lệnh `git clone { link repo }`
+
 ## Bước 1: Cấu Hình và Setup Hệ Thống
 
 Hệ thống được tổ chức thành hai phần chính trong thư mục `setup`:
