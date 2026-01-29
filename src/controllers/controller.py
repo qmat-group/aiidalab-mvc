@@ -1,3 +1,4 @@
+from operator import iand
 import traitlets as tl
 
 class Controller:
@@ -19,11 +20,12 @@ class Controller:
         self.model.reset()
         
     def _on_status_change(self, change):
-        new_status = change['new']
         # Update status widget if it exists in view
-        if hasattr(self.view, 'widgets_dict') and 'status_output' in self.view.widgets_dict:
-            self.view.widgets_dict['status_output'].value = f"<b>Status:</b> {new_status}"
-            
+        status_msg = f"<b>Status:</b> {change['new']}"
+        if hasattr(self.view, 'widgets_dict'):
+            if 'status_output' in self.view.widgets_dict:
+                self.view.widgets_dict['status_output'].value = status_msg
+
     def _on_result_change(self, change):
         # We can observe x1 or x2, or just update when status changes to Completed
         # But let's override the base method to handle specific logic
@@ -39,12 +41,6 @@ class Controller:
                 if hasattr(self.model, key):
                     if hasattr(widget, 'value'):
                         tl.link((self.model, key), (widget, 'value'))
-        else:
-            tl.link((self.model, 'input_a'), (self.view.input_a_widget, 'value'))
-            tl.link((self.model, 'input_b'), (self.view.input_b_widget, 'value'))
-            
-            self.model.observe(self._on_status_change, names='calculation_status')
-            self.model.observe(self._on_result_change, names='result')
 
         self.model.observe(self._update_result_display, names=['x1', 'x2'])
 
@@ -62,8 +58,13 @@ class Controller:
                         widget.on_click(self._on_reset)
 
     def _update_result_display(self, change):
-        if hasattr(self.view, 'widgets_dict') and 'result_output' in self.view.widgets_dict:
-            if self.model.x1 is not None and self.model.x2 is not None:
-                self.view.widgets_dict['result_output'].value = f"<b>Result:</b> x1 = {self.model.x1:.4f}, x2 = {self.model.x2:.4f}"
-            else:
-                self.view.widgets_dict['result_output'].value = "<b>Result:</b> No valid solution"
+        if hasattr(self.view, 'widgets_dict'):
+            if 'result_output' in self.view.widgets_dict:
+                x1 = self.model.x1
+                x2 = self.model.x2
+                if x1 is not None and x2 is not None:
+                    msg = f"<b>Result:</b> x1 = {x1:.4f}, x2 = {x2:.4f}"
+                    self.view.widgets_dict['result_output'].value = msg
+                else:
+                    msg = "<b>Result:</b> No valid solution"
+                    self.view.widgets_dict['result_output'].value = msg

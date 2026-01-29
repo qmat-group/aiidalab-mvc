@@ -30,7 +30,8 @@ class YAMLView(ipw.VBox):
             w_children = w_def.get('children', [])
             
             # Extract kwargs for widget initialization
-            kwargs = {k: v for k, v in w_def.items() if k not in ['type', 'key', 'event', 'children']}
+            kwargs = { k: v for k, v in w_def.items() 
+                            if k not in ['type', 'key', 'event', 'children']}
             
             # Create widget instance
             if hasattr(ipw, w_type):

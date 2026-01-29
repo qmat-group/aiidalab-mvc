@@ -5,10 +5,10 @@ import ipywidgets as ipw
 template = """
 <table>
 <tr>
-  <th style="text-align:center">MVC Template</th>
+  <th style="text-align:center">MVC Example: Quadratic Equation Solver</th>
 <tr>
   <td valign="top"><ul>
-    <li><a href="{appbase}/example.ipynb" target="_blank">Example notebook</a></li>
+    <li><a href="{appbase}/start.ipynb" target="_blank">Run Solver</a></li>
   </ul></td>
 </tr>
 </table>

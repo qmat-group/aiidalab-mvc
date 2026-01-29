@@ -1,0 +1,15 @@
+---
+label: "pias"
+hostname: IP_ADDRESS_HERE
+description: "PIAS Cluster"
+transport: "core.ssh"
+scheduler: "core.sge"
+work_dir: "/home/{username}/.aiida_run"
+mpirun_command: "mpirun -np {tot_num_mpiprocs}"
+mpiprocs_per_machine: 4
+
+user: IMMAD_USER_HERE
+username: USERNAME_AT_SERVER_HERE
+key_filename: /home/jovyan/.ssh/aiida
+safe_interval: 5
+use_login_shell: "no"

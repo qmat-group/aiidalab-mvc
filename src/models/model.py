@@ -7,12 +7,12 @@ class Model(tl.HasTraits):
     a = tl.Float()
     b = tl.Float()
     c = tl.Float()
-    x1 = tl.Float(allow_none= True)
-    x2 = tl.Float(allow_none= True)
+    x1 = tl.Float(allow_none=True)
+    x2 = tl.Float(allow_none=True)
     
     def __init__(self):
         # Cấu hình thông tin builder
-        code = orm.load_code('quad_demo@pias_demo')
+        code = orm.load_code('quad-1.0@pias')
         self.builder = code.get_builder()
         metadata = {
             'options':{
@@ -20,10 +20,10 @@ class Model(tl.HasTraits):
                     'tot_num_mpiprocs':1,
                     'parallel_env':'smp',
                 },
-                'withmpi':True,
+                'withmpi':False,
             },
             'label':'quad_demo',
-            'description': 'quad demo for IMMAD course',
+            'description': 'quad demo',
         }
         self.builder.metadata = metadata
         
@@ -32,14 +32,11 @@ class Model(tl.HasTraits):
         self.builder.b = orm.Float(b)
         self.builder.c = orm.Float(c)
         result = engine.submit(self.builder, wait=True, wait_interval=15)
-        text = result.outputs.quad.get_content()
-        if text.strip() == 'Error' or text.strip() == 'None':
-            self.x1 = None
-            self.x2 = None
-        else:
-            splitted_text = text.split(',')
-            self.x1 = float(splitted_text[0])
-            self.x2 = float(splitted_text[1])
+        self.x1 = self.x2 = None 
+        if 'x1' in result.outputs:
+            self.x1 = result.outputs.x1.value
+        if 'x2' in result.outputs:
+            self.x2 = result.outputs.x2.value
 
     def update(self): 
         pass
