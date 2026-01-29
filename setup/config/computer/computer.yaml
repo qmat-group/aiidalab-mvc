@@ -1,6 +1,6 @@
 ---
 label: "pias"
-hostname: "10.1.1.1"
+hostname: IP_ADDRESS_HERE
 description: "PIAS Cluster"
 transport: "core.ssh"
 scheduler: "core.sge"
