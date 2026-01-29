@@ -1,7 +1,8 @@
-computer: pias_demo
-label: quad_demo
-description: quad eq
+---
+computer: pias
+label: quad-1.0
+description: Solve the quadratic equation
 filepath_executable: /share/data/hungdt/aiida/quad/quad
-default_calc_job_plugin: quad
+default_calc_job_plugin: quad-calculation
 use_double_quotes: no
-with_mpi: yes
+with_mpi: no
